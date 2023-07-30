@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<launch>
+    <!-- Move base (see http://wiki.ros.org/navigation/Tutorials/RobotSetup) -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find navigation_pkg)/config/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+        <rosparam file="$(find navigation_pkg)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find navigation_pkg)/config/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find navigation_pkg)/config/global_costmap_params.yaml" command="load" /> 
+        <rosparam file="$(find navigation_pkg)/config/base_local_planner_params.yaml" command="load" />
+        <rosparam file="$(find navigation_pkg)/config/global_planner_params.yaml" command="load" />
+    </node>
+
+    <!-- Goals configuration -->
+    <node pkg="navigation_pkg" type="move_base_seq.py" name="move_base_seq" output="screen" respawn="false" launch-prefix="bash -c 'sleep 5; $0 $@'">
+        
+        <!-- Load Sequence of Points (Coordinates in the 'World' frame) -->
+            <rosparam param="p_seq">[
+            -25,-58,0.40,      <!-- Goal 1-->
+            -52.4,-38,0.40,    <!-- Goal 2: 1st curve-->
+            -52.4,-2,0.40,     <!-- Goal 3-->
+            -52.4,32,0.40,     <!-- Goal 4-->
+            -52.4,60,0.40,     <!-- Goal 5-->
+            -52.4,91,0.40,     <!-- Goal 6-->
+            -52.9,118,0.40,    <!-- Goal 7-->
+            -49,119,0.40,      <!-- Goal 8: 2nd Curve-->
+            -37,121,0.40,      <!-- Goal 9 -->
+            -4.0,135,0.40,     <!-- Goal 10: 3rd curve-->
+            -4.0,170,0.40,     <!-- Goal 11-->
+            3.19,221.5,0.40,   <!-- Goal 12-->
+            -16.5,233,0.40,    <!-- Goal 13: 4th Curve -->
+            -34.4,232.4,0.40,  <!-- Goal 14: 4th Curve -->
+            -48,220.4,0.40,    <!-- Goal 15 -->
+            -52.4,185,0.40,    <!-- Goal 16: 5th Curve-->
+            -10,45,0.40,       <!-- Goal 17: 6th Curve-->
+            -3.1,37, 0.40,     <!-- Goal 18 -->
+            -3.3,-62.3,0.40,   <!-- Goal 19-->
+             12,-65.5,0.40     <!-- Goal 20-->
+            ]</rosparam>
+        <!-- Load Sequence of Desired Yaw Angles (no rotations around x and y axes) in degrees-->
+            <rosparam param="yea_seq">[90,90,90,90,90,90, 90, 90, 90, 90, 90, 90,
+            90,90,90,90,90,90, 90, 90, 90, 90, 90, 90, 90, 90]</rosparam>
+
+    </node>
+
+</launch>

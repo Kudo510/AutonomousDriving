@@ -1,0 +1,17 @@
+<launch>
+    <!-- Controller Node -->
+    <node name="controller_node" pkg="controller_pkg" type="controller_node" output="screen" launch-prefix="bash -c 'sleep 5; $0 $@'">
+        <param name="current_state_topic" value="current_state_est" />
+        <param name="car_commands_topic" value="car_commands" />
+        <param name="loop_frequency" value="1000.0" />
+    </node>
+
+   <!--
+   <node pkg="controller_pkg" type="state_machine.py" name="traffic_light_braking_node" output="screen">
+    <param name="traffic_light_color" value="/traffic_light_color"/>
+    <param name="traffic_light_position" value="/traffic_light_position"/>
+    <remap from="cmd_vel2" to="/cmd_vel2"/>
+  </node>
+  -->
+</launch>
+

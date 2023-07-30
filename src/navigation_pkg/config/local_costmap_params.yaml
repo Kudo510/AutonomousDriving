@@ -1,0 +1,35 @@
+local_costmap:
+    global_frame: world
+    robot_base_frame: body
+    update_frequency: 1.0
+    publish_frequency: 1.0
+   
+    rolling_window: true
+    width: 40
+    height: 40
+    resolution: 2.0
+    
+    transform_tolerance: 4.0 
+    
+    inflate_around_unknown: true 
+
+    plugins: 
+        - {name: static_layer,            type: "costmap_2d::StaticLayer"}
+        - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}
+        - {name: obstacle_layer,          type: "costmap_2d::ObstacleLayer"}
+
+    static_layer:
+        enabled:              true
+        map_topic:            "projected_map"
+
+
+    inflation_layer:
+        enabled:              true
+        cost_scaling_factor:  500  
+        inflation_radius:     30
+
+    obstacle_layer:
+        enabled: false
+        observation_sources: point_cloud_sensor
+        footprint_clearing_enabled: true
+        point_cloud_sensor: {sensor_frame: body, data_type: PointCloud2, topic: point_cloud_position_of_cars, marking: true, clearing: true}

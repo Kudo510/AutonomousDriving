@@ -1,0 +1,30 @@
+TrajectoryPlannerROS:
+  max_vel_x: 1.0               # Maximum forward velocity (around 10 km/h)
+  min_vel_x: 0.2               # Minimum forward velocity (to overcome friction)
+  max_vel_y: 0.0               # Maximum lateral velocity (no lateral movement)
+  min_vel_y: 0.0               # Minimum lateral velocity (no lateral movement)
+  max_vel_theta: 2.6           # Maximum rotational velocity (turning speed in rad/s)
+  min_in_place_vel_theta: 0.0  # Minimum rotational velocity during in-place rotations (for precise maneuvering)
+
+  acc_lim_theta: 1.8  # Maximum rotational acceleration (for smooth and controlled turns)
+  acc_lim_x: 1.0      # Maximum forward acceleration
+  acc_lim_y: 0.0      # Maximum lateral acceleration (no lateral movement)
+
+  xy_goal_tolerance: 4.5    # Tolerance for goal proximity in x and y axes
+  z_goal_tolerance: 3.0     # Tolerance for goal proximity in the z axis (elevation)
+  yaw_goal_tolerance: 6.28  # Tolerance for goal proximity in yaw angle (2*pi to indirectly disable the check)
+
+  holonomic_robot: false  # Set to true if the robot has holonomic capabilities
+  global_frame_id: world  # The frame ID used as the global reference frame
+  
+  path_distance_bias: 5.0         # The weighting for how much the controller should stay close to the path it was given, maximal possible value is 5.0 
+  goal_distance_bias: 0.0         # The weighting for how much the controller should attempt to reach its local goal, also controls speed, maximal possible value is 5.0 
+  heading_lookahead: 3.5   # How far to look ahead in meters when scoring different in-place-rotation trajectories 
+  heading_scoring: false
+  
+  dwa: false
+  prune_plan: false
+  meter_scoring: true
+ 
+
+

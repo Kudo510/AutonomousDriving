@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Simulation -->
+  <include file="$(find simulation)/launch/simulation.launch"/>  
+
+  <!-- Perception -->
+  <include file="$(find perception_pkg)/launch/perception.launch"/>  
+
+  <!-- Object detection -->
+  <node pkg="object_detection_pkg" type="cars_detection.py" name="cars_detection" output="screen"> </node>
+  <node pkg="object_detection_pkg" type="traffic_light_status.py" name="traffic_light_status" output="screen"> </node>
+
+  <!-- Navigation -->
+  <include file="$(find navigation_pkg)/launch/navigation.launch"/>  
+
+  <!-- Controller -->
+  <include file="$(find controller_pkg)/launch/controller_pkg.launch"/>
+
+  <!-- RVIZ -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find simulation)/../../master_visualization.rviz"/>
+ 
+ 
+ 
+</launch>

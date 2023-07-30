@@ -1,0 +1,17 @@
+# OS related files
+.DS_Store
+
+# Build artifacts
+build/
+devel/
+install/
+
+# Executables
+bin/
+lib/
+
+# Log files
+logs/
+
+# Other project-specific files
+.catkin_tools/

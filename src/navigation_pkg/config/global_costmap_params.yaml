@@ -1,0 +1,21 @@
+global_costmap:
+    global_frame: world
+    robot_base_frame: body
+    update_frequency: 2.0
+    rolling_window: false
+    width: 300
+    height: 300
+    resolution: 2.0
+
+    plugins: 
+    - {name: static_layer, type: "costmap_2d::StaticLayer"}
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
+    static_layer:
+        enabled: true
+        map_topic: "projected_map"
+
+    inflation_layer:
+        enabled: true
+        cost_scaling_factor: 30
+        inflation_radius: 10.0
